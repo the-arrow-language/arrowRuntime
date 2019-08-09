@@ -1,0 +1,34 @@
+{
+  "name": "arrow-runtime",
+  "version": "0.1.0",
+  "description": "Arrow Language Runtime, based on javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index example/helloworld.arr"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-arrow-language/arrowRuntime.git"
+  },
+  "keywords": [
+    "arrow",
+    "language"
+  ],
+  "author": "The Arrow Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/the-arrow-language/arrowRuntime/issues"
+  },
+  "homepage": "https://github.com/the-arrow-language/arrowRuntime#readme",
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-config-standard": "^13.0.1"
+  },
+  "dependencies": {
+    
+  }
+}
