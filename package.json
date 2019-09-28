@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node index example/helloworld.arr"
   },
+  "bin": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/the-arrow-language/arrowRuntime.git"
@@ -28,7 +29,5 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-config-standard": "^13.0.1"
   },
-  "dependencies": {
-    
-  }
+  "dependencies": {}
 }

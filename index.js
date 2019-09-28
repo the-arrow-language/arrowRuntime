@@ -1,7 +1,9 @@
+#!/bin/node
+
 /**
  * @name Arrow-Runtime
  * @description Arrow Language Runtime, based on javascript
- * @author The Arrow Team / PMH, NamuTree0345
+ * @author The Arrow Team / PMH, NamuTree0345, noamboy2006, ttakkku
  * @license MIT
  * @see https://github.com/orgs/the-arrow-language
  * @copyright (c) 2019 The Arrow Team. MIT Licensed.
@@ -20,13 +22,27 @@ Options:
 -h, --help      Print This Message
 -v, --version   Show Version of Arrow Language Runtime`)
 } else {
-  const runtime = require('./src/runtime')
-  runtime.runtime(process.argv[2], (err, func) => {
-    if (err) {
-      console.error(err)
-      process.exit(1)
-    } else {
-      process.exit(func())
-    }
-  })
+  if (process.argv[2].endsWith('.arr')) {
+    const runtime = require('./src/runtime')
+    runtime.runtime(process.argv[2], (err, func) => {
+      if (err) {
+        console.error(err)
+        process.exit(1)
+      } else {
+        process.exit(func())
+      }
+    })
+  } else if (process.argv[2].endsWith('.arrf')) {
+    const runtime = require('./src/runtime')
+    runtime.wtfRuntime(process.argv[2], (err) => {
+      if (err) {
+        console.error(err)
+        process.exit(1)
+      } else {
+        process.exit(0)
+      }
+    })
+  } else {
+    console.log('.' + process.argv[2].split('.')[process.argv[2].split('.').length - 1] + ' is not a Arrow Language File')
+  }
 }

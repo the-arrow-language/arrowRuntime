@@ -79,4 +79,125 @@ function runtime (filepath, cb) {
   }
 }
 
+/**
+ * @param {String} data
+ */
+function wtfRuntime (filepath, cb) {
+  if (!fs.existsSync(filepath)) {
+    cb(new Error(filepath + ' is non-exist or not a file.'))
+  } else {
+    fs.readFile(filepath, (err, data) => {
+      if (err) cb(err)
+      data = data.toString('utf-8')
+      let point = 0
+
+      /**
+       * memory
+       * @type {Array<Number>}
+       */
+      const memory = []
+      data = data.split('\n').join(' ')
+      data.split(' ').forEach((cnt) => {
+        switch (cnt.trim()) {
+          case '^+':
+            point++
+            break
+
+          case '^-':
+            point--
+            break
+
+          case '<+':
+            if (!memory[point]) memory[point] = 0
+            memory[point]++
+            break
+
+          case '<-':
+            if (!memory[point]) memory[point] = 0
+            memory[point]--
+            break
+
+          case '<+=':
+            if (!memory[point]) memory[point] = 0
+            memory[point] += memory[point]
+            break
+
+          case '<-=':
+            if (!memory[point]) memory[point] = 0
+            memory[point] -= memory[point]
+            break
+
+          case '<*=':
+            if (!memory[point]) memory[point] = 0
+            memory[point] *= memory[point]
+            break
+
+          case '</=':
+            if (!memory[point]) memory[point] = 0
+            memory[point] /= memory[point]
+            break
+
+          case '<+^':
+            if (!memory[point]) memory[point] = 0
+            memory[point] += memory[point - 1]
+            break
+
+          case '<+_':
+            if (!memory[point]) memory[point] = 0
+            memory[point] += memory[point + 1]
+            break
+
+          case '<-^':
+            if (!memory[point]) memory[point] = 0
+            memory[point] -= memory[point - 1]
+            break
+
+          case '<-_':
+            if (!memory[point]) memory[point] = 0
+            memory[point] -= memory[point + 1]
+            break
+
+          case '<*^':
+            if (!memory[point]) memory[point] = 0
+            memory[point] *= memory[point - 1]
+            break
+
+          case '<*_':
+            if (!memory[point]) memory[point] = 0
+            memory[point] *= memory[point + 1]
+            break
+
+          case '</^':
+            if (!memory[point]) memory[point] = 0
+            memory[point] /= memory[point - 1]
+            break
+
+          case '</_':
+            if (!memory[point]) memory[point] = 0
+            memory[point] /= memory[point + 1]
+            break
+
+          case '->':
+            if (!memory[point]) memory[point] = 0
+            console.log(memory[point])
+            break
+
+          case '=>':
+            if (!memory[point]) memory[point] = 0
+            console.log(String.fromCharCode(memory[point]))
+            break
+
+          case ']':
+            cb(null)
+            break
+
+          default:
+            break
+        }
+      })
+    })
+  }
+}
+
 exports.runtime = runtime
+exports.wtfRuntime = wtfRuntime

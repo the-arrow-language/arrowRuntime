@@ -1,1 +1,0 @@
-node index %1 %2 %3
